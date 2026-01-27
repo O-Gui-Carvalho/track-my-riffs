@@ -12,14 +12,14 @@ const HOME_CARDS = [
   {
     title: 'Músicas',
     description: 'Adicione novas músicas',
-    href: '/musicas',
+    href: '/dashboard/musicas',
     src: '/images/add-song-image.jpg',
     className: 'col-span-1 row-span-1 aspect-video'
   },
   {
     title: 'Bandas',
     description: 'Adicione novas bandas',
-    href: '/bandas',
+    href: '/dashboard/bandas',
     src: '/images/add-band-image.jpg',
     className: 'col-span-1 row-span-1 aspect-video'
   }
@@ -29,7 +29,7 @@ export default function HomePage() {
   return (
     <section className="flex flex-col p-8 max-w-6xl mx-auto overflow-hidden h-dvh">
       
-      <header className="mb-6 shrink-0">
+      <header className="mb-8 pt-8 shrink-0">
         <h1 className='text-4xl font-bold tracking-tight text-white'>Início</h1>
         <p className="text-neutral-400 mt-1">O que vamos tocar hoje?</p>
       </header>

@@ -17,7 +17,8 @@ const statusStyles: { [key: string]: string } = {
 export default function SetlistPage() {
     return (
         <section className='flex flex-col p-8 max-w-6xl mx-auto h-dvh overflow-hidden'>
-            <header className="mb-8 shrink-0 flex justify-between items-end">
+            
+            <header className="mb-8 pt-8 shrink-0 flex justify-between items-end">
                 <div>
                     <h1 className="text-4xl font-bold tracking-tight text-white">Setlist</h1>
                     <p className="text-neutral-400 mt-1">Todo o seu repertório</p>
@@ -41,7 +42,7 @@ export default function SetlistPage() {
                         </thead>
                         <tbody className="divide-y divide-neutral-800">
                             {MUSICAS.map((msc) => (
-                                <tr key={msc.title} className="group hover:bg-neutral-800/50 transition-colors cursor-pointer">
+                                <tr key={msc.title} className="group hover:bg-neutral-800 transition-colors duration-300 cursor-pointer">
                                     <td className="p-4 font-medium text-neutral-200">{msc.title}</td>
                                     <td className="p-4 text-neutral-400">{msc.banda}</td>
                                     <td className="p-4">

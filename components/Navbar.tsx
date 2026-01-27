@@ -13,8 +13,8 @@ export default function Navbar() {
   const navLinks = [
     { name: 'Início', href: '/dashboard', icon: LuHouse },
     { name: 'Setlist Completo', href: '/dashboard/setlist', icon: LuList },
-    { name: 'Adicionar Música', href: '/add-musica', icon: LuListMusic },
-    { name: 'Adicionar Banda', href: '/add-banda', icon: LuFileMusic },
+    { name: 'Adicionar Música', href: '/dashboard/musicas', icon: LuListMusic },
+    { name: 'Adicionar Banda', href: '/dashboard/bandas', icon: LuFileMusic },
   ];
 
   return (
