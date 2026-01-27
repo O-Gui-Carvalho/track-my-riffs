@@ -5,7 +5,7 @@ const HOME_CARDS = [
   {
     title: 'Setlist Completa',
     description: 'Gerencie todas as suas músicas',
-    href: '/setlist',
+    href: '/dashboard/setlist',
     src: '/images/list-image.jpg',
     className: 'col-span-2 row-span-1' 
   },
@@ -41,8 +41,12 @@ export default function HomePage() {
             href={card.href}
             className={`group relative overflow-hidden rounded-2xl shadow-2xl ${card.className}`}
           >
+
+            {/* Overlay de Gradiente para leitura do texto */}
             <div className="absolute inset-0 z-10 bg-linear-to-t from-black/90 via-black/20 to-transparent opacity-70 group-hover:opacity-80 transition-opacity" />
             
+            
+            {/* Texto sobre a imagem */}
             <div className="absolute bottom-0 left-0 z-20 p-6 w-full">
               <h2 className="text-2xl font-bold text-white leading-tight">{card.title}</h2>
               <p className="text-sm text-neutral-300 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 line-clamp-1">
@@ -50,6 +54,7 @@ export default function HomePage() {
               </p>
             </div>
 
+            {/* Imagem com efeito de Zoom no Hover */}
             <Image 
               src={card.src} 
               alt={card.title} 

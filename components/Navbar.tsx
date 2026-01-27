@@ -12,7 +12,7 @@ export default function Navbar() {
   // Links provisórios
   const navLinks = [
     { name: 'Início', href: '/dashboard', icon: LuHouse },
-    { name: 'Setlist Completo', href: '/setlist', icon: LuList },
+    { name: 'Setlist Completo', href: '/dashboard/setlist', icon: LuList },
     { name: 'Adicionar Música', href: '/add-musica', icon: LuListMusic },
     { name: 'Adicionar Banda', href: '/add-banda', icon: LuFileMusic },
   ];

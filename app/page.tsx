@@ -52,7 +52,7 @@ export default function Home() {
               />
             </div>
 
-            <button type="submit" className="mt-2 bg-neutral-200 text-neutral-900 font-semibold rounded-lg p-2 hover:bg-neutral-600 hover:text-neutral-200 transition-colors duration-300 cursor-pointer">
+            <button type="submit" className="mt-2 bg-neutral-200 text-neutral-900 font-semibold rounded-lg p-2 hover:bg-neutral-400 transition-colors duration-300 cursor-pointer">
               Entrar
             </button>
           </form>
