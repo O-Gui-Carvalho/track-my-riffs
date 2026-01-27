@@ -1,4 +1,4 @@
-"use client"; // Necessário para usar hooks de navegação
+"use client";
 
 import Image from 'next/image';
 import Link from 'next/link';
@@ -9,9 +9,9 @@ import { GoGear } from "react-icons/go";
 export default function Navbar() {
   const pathname = usePathname();
 
-  // Configuração dos links para facilitar a manutenção
+  // Links provisórios
   const navLinks = [
-    { name: 'Início', href: '/', icon: LuHouse },
+    { name: 'Início', href: '/dashboard', icon: LuHouse },
     { name: 'Setlist Completo', href: '/setlist', icon: LuList },
     { name: 'Adicionar Música', href: '/add-musica', icon: LuListMusic },
     { name: 'Adicionar Banda', href: '/add-banda', icon: LuFileMusic },
@@ -70,7 +70,7 @@ export default function Navbar() {
         
         <button 
           title="Configurações"
-          className="p-2 text-neutral-400 hover:text-white hover:bg-neutral-800 rounded-lg transition-colors"
+          className="p-2 text-neutral-400 hover:text-white hover:bg-neutral-800 rounded-lg transition-colors cursor-pointer"
         >
           <GoGear className='text-xl'/>
         </button>

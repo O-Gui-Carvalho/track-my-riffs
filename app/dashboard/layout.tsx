@@ -1,5 +1,5 @@
-import React from 'react'
-import Sidenav from '@/components/Navbar'
+import React from 'react';
+import Sidenav from '@/components/Navbar';
 
 export default function layout( { children } : { children: React.ReactNode } ) {
   return (
@@ -7,9 +7,9 @@ export default function layout( { children } : { children: React.ReactNode } ) {
         <div className='w-full flex-none md:w-64'>
             <Sidenav />
         </div>
-        <div className="grow p-6 md:overflow-y-auto md:p-12">
+        <div className="grow md:overflow-y-auto">
             {children}
         </div>
     </div>
-  )
+  );
 }
