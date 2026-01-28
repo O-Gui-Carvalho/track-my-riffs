@@ -6,7 +6,7 @@ export default function AddMusicPage() {
     const fieldStyles = "w-full bg-neutral-800 border border-neutral-700 rounded-lg p-3 text-neutral-200 placeholder:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-neutral-600 focus:border-transparent transition-all"
 
     return (
-        <section className="flex flex-col p-8 max-w-4xl mx-auto h-dvh overflow-hidden">
+        <section className="flex flex-col p-8 max-w-6xl mx-auto h-dvh overflow-hidden">
             
             <header className="mb-8 pt-8 shrink-0">
                 <Link href="/dashboard/setlist" className="flex items-center gap-2 text-neutral-400 hover:text-white transition-colors mb-4 group">
@@ -19,7 +19,7 @@ export default function AddMusicPage() {
             </header>
 
             <div className="border border-neutral-800 bg-neutral-900/50 rounded-2xl p-8 overflow-y-auto">
-                <form action="" className="flex flex-col gap-6 max-w-2xl mx-auto">
+                <form action="" className="flex flex-col gap-6 mx-auto">
                     
                     {/* Campo: Nome */}
                     <div className="flex flex-col gap-2">
@@ -54,7 +54,7 @@ export default function AddMusicPage() {
                             Status de Aprendizado
                         </label>
                         <div className="grid grid-cols-3 gap-3">
-                            {['Aprender', 'Em Progresso', 'Aprendido'].map((status) => (
+                            {['Aprender', 'Aprendendo', 'Aprendido'].map((status) => (
                                 <label key={status} className="cursor-pointer">
                                     <input type="radio" name="status" value={status} className="peer sr-only" />
                                     <div className="p-3 text-center rounded-lg border border-neutral-700 bg-neutral-800 text-neutral-400 peer-checked:bg-neutral-200 peer-checked:text-neutral-900 peer-checked:border-transparent transition-all">

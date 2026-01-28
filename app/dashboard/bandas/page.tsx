@@ -1,14 +1,11 @@
 import Link from 'next/link'
 import { LuArrowLeft, LuMusic, LuTrash2, LuPlus } from 'react-icons/lu'
-
-const BANDAS = [
-    { title: 'Alice in Chains', musicas: 5 },
-    { title: 'Soundgarden', musicas: 3 },
-    { title: 'Nirvana', musicas: 6 },
-    { title: 'Pearl Jam', musicas: 2 }
-]
+import { getBandsWithMusicCount } from '@/utils/BandWithMusicCount'
+import { bands, musics } from '@/data/database';
 
 export default function GerenciarBandasPage() {
+    const bandsWithMusicCount = getBandsWithMusicCount(bands, musics);
+
     return (
         <section className='flex flex-col p-8 max-w-6xl mx-auto h-dvh overflow-hidden'>
             
@@ -66,13 +63,13 @@ export default function GerenciarBandasPage() {
                             </thead>
 
                             <tbody className="divide-y divide-neutral-800">
-                                {BANDAS.map((bnd) => (
-                                    <tr key={bnd.title} className='group hover:bg-neutral-800/40 transition-colors'>
-                                        <td className="p-4 font-medium text-neutral-200">{bnd.title}</td>
+                                {bandsWithMusicCount.map((bnd) => (
+                                    <tr key={bnd.name} className='group hover:bg-neutral-800/40 transition-colors'>
+                                        <td className="p-4 font-medium text-neutral-200">{bnd.name}</td>
                                         <td className="p-4">
                                             <div className="flex items-center justify-center gap-2 text-neutral-400 bg-neutral-800/50 w-fit mx-auto px-3 py-1 rounded-full text-sm border border-neutral-700">
                                                 <LuMusic size={14}/>
-                                                {bnd.musicas}
+                                                {bnd.musicCount}
                                             </div>
                                         </td>
                                         <td className="p-4 text-right">
@@ -86,7 +83,7 @@ export default function GerenciarBandasPage() {
                         </table>
                         
                         {/* Estado Vazio */}
-                        {BANDAS.length === 0 && (
+                        {bandsWithMusicCount.length === 0 && (
                             <div className="p-12 text-center text-neutral-500">
                                 Nenhuma banda cadastrada ainda.
                             </div>

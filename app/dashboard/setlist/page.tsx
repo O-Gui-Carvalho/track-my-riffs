@@ -1,20 +1,16 @@
 import Link from "next/link"
 import { LuArrowLeft, LuPlus } from "react-icons/lu"
 import { TbEdit, TbTrash } from "react-icons/tb"
-
-const MUSICAS = [
-    { title: 'Nutshell', banda: 'Alice in Chains', status: 'Aprendida' },
-    { title: 'Down in a hole', banda: 'Alice in Chains', status: 'Aprendida' },
-    { title: 'Outshined', banda: 'Soundgarden', status: 'Em progresso' },
-    { title: 'Black Hole Sun', banda: 'Soundgarden', status: 'Aprendida' },
-]
+import { musics, bands } from "@/data/database"
 
 // Mapeamento de cores para os status
 const statusStyles: { [key: string]: string } = {
-    'Aprendida': 'bg-green-500/10 text-green-500 border-green-500/20',
-    'Em progresso': 'bg-yellow-500/10 text-yellow-500 border-yellow-500/20',
-    'Nova': 'bg-blue-500/10 text-blue-500 border-blue-500/20',
+    'Aprendido': 'bg-green-500/10 text-green-500 border-green-500/20',
+    'Aprender': 'bg-yellow-500/10 text-yellow-500 border-yellow-500/20',
+    'Aprendendo': 'bg-blue-500/10 text-blue-500 border-blue-500/20',
 }
+
+const bandsMap = new Map(bands.map(band => [band.id, band.name]))
 
 export default function SetlistPage() {
     return (
@@ -27,7 +23,7 @@ export default function SetlistPage() {
                 <div className="flex justify-between items-end">
                     <div>
                         <h1 className="text-4xl font-bold tracking-tight text-white">Setlist</h1>
-                        <p className="text-neutral-400 mt-1">Todo o seu repertório</p>
+                        <p className="text-neutral-400 mt-1">Todo o seu repertório</p> 
                     </div>
                     <button className="flex items-center justify-center gap-2 bg-white text-neutral-900 rounded-xl p-3 hover:bg-neutral-400 transition-colors duration-300 cursor-pointer">
                         <LuPlus size={20}/>  Nova Música
@@ -48,10 +44,12 @@ export default function SetlistPage() {
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-neutral-800">
-                            {MUSICAS.map((msc) => (
+                            {musics.map((msc) => (
                                 <tr key={msc.title} className="group hover:bg-neutral-800 transition-colors duration-300 cursor-pointer">
                                     <td className="p-4 font-medium text-neutral-200">{msc.title}</td>
-                                    <td className="p-4 text-neutral-400">{msc.banda}</td>
+                                    <td className="p-4 text-neutral-400">
+                                        {bandsMap.get(msc.bandId) ?? 'Banda não encontrada'}
+                                    </td>
                                     <td className="p-4">
                                         <span className={`px-2 py-1 rounded-full text-xs border ${statusStyles[msc.status] || statusStyles['Nova']}`}>
                                             {msc.status}
