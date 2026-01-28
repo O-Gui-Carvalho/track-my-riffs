@@ -10,7 +10,7 @@ export function getBandsWithMusicCount(
 ): BandWithMusicCount[] {
     return bands.map((band) => {
         let count = 0;
-
+        
         for (let i = 0; i < musics.length; i++) {
             if (musics[i].bandId === band.id) {
                 count++;

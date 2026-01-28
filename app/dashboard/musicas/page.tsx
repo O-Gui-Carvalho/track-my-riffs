@@ -2,7 +2,6 @@ import Link from 'next/link'
 import { LuArrowLeft, LuPlus } from "react-icons/lu"
 
 export default function AddMusicPage() {
-    // Classe reutilizável para manter a consistência
     const fieldStyles = "w-full bg-neutral-800 border border-neutral-700 rounded-lg p-3 text-neutral-200 placeholder:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-neutral-600 focus:border-transparent transition-all"
 
     return (
