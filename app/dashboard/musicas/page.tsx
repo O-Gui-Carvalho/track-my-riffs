@@ -1,6 +1,5 @@
-import React from 'react'
 import Link from 'next/link'
-import { LuArrowLeft } from "react-icons/lu"
+import { LuArrowLeft, LuPlus } from "react-icons/lu"
 
 export default function AddMusicPage() {
     // Classe reutilizável para manter a consistência
@@ -15,7 +14,7 @@ export default function AddMusicPage() {
                 </Link>
                 <div>
                     <h1 className='text-4xl font-bold tracking-tight text-white'>Nova Música</h1>
-                    <p className="text-neutral-400 mt-1">Preencha os detalhes da música para o seu repertório.</p>
+                    <p className="text-neutral-400 mt-1">Adicione músicas ao seu repertório</p>
                 </div>
             </header>
 
@@ -69,9 +68,9 @@ export default function AddMusicPage() {
                     <div className="pt-4 mt-auto">
                         <button 
                             type="submit" 
-                            className="w-full bg-white text-neutral-900 rounded-xl p-4 hover:bg-neutral-400 transition-all duration-300 cursor-pointer"
+                            className="flex items-center justify-center gap-2 w-full bg-white text-neutral-900 rounded-xl p-3 hover:bg-neutral-400 transition-colors duration-300 cursor-pointer"
                         >
-                            Salvar Música
+                            <LuPlus size={20}/> Salvar Música
                         </button>
                     </div>
 

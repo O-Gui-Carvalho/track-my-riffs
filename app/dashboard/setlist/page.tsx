@@ -1,3 +1,5 @@
+import Link from "next/link"
+import { LuArrowLeft, LuPlus } from "react-icons/lu"
 import { TbEdit, TbTrash } from "react-icons/tb"
 
 const MUSICAS = [
@@ -18,14 +20,19 @@ export default function SetlistPage() {
     return (
         <section className='flex flex-col p-8 max-w-6xl mx-auto h-dvh overflow-hidden'>
             
-            <header className="mb-8 pt-8 shrink-0 flex justify-between items-end">
-                <div>
-                    <h1 className="text-4xl font-bold tracking-tight text-white">Setlist</h1>
-                    <p className="text-neutral-400 mt-1">Todo o seu repertório</p>
+            <header className="mb-8 pt-8 shrink-0">
+                <Link href="/dashboard" className="flex items-center gap-2 text-neutral-400 hover:text-white transition-colors mb-4 group w-fit">
+                    <LuArrowLeft className="group-hover:-translate-x-1 transition-transform"/>Voltar para o Início
+                </Link>
+                <div className="flex justify-between items-end">
+                    <div>
+                        <h1 className="text-4xl font-bold tracking-tight text-white">Setlist</h1>
+                        <p className="text-neutral-400 mt-1">Todo o seu repertório</p>
+                    </div>
+                    <button className="flex items-center justify-center gap-2 bg-white text-neutral-900 rounded-xl p-3 hover:bg-neutral-400 transition-colors duration-300 cursor-pointer">
+                        <LuPlus size={20}/>  Nova Música
+                    </button>
                 </div>
-                <button className="bg-white text-black px-4 py-2 rounded-lg font-medium hover:bg-neutral-400 transition-colors duration-300 cursor-pointer">
-                    + Nova Música
-                </button>
             </header>
 
             {/* Container da Tabela com scroll interno */}
