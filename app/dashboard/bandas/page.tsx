@@ -1,10 +1,19 @@
 import Link from 'next/link'
 import { LuArrowLeft, LuMusic, LuTrash2, LuPlus } from 'react-icons/lu'
-import { getBandsWithMusicCount } from '@/utils/BandWithMusicCount'
-import { bands, musics } from '@/data/database';
+import { createBand } from '@/actions/create'
+import { sql } from '@/lib/db'
 
-export default function GerenciarBandasPage() {
-    const bandsWithMusicCount = getBandsWithMusicCount(bands, musics);
+export default async function GerenciarBandasPage() {
+    const bandsWithMusicCount = await sql`
+        SELECT 
+            bands.id,
+            bands.name, 
+            COUNT(musics.id) as "musicCount"
+        FROM bands
+        LEFT JOIN musics ON bands.id = musics.band_id
+        GROUP BY bands.id, bands.name
+        ORDER BY bands.name ASC
+    `;
 
     return (
         <section className='flex flex-col p-8 max-w-6xl mx-auto h-dvh overflow-hidden'>
@@ -25,7 +34,8 @@ export default function GerenciarBandasPage() {
                 <aside className="lg:col-span-2">
                     <div className="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-6 shadow-sm">
                         <h2 className="text-xl font-semibold text-white mb-6">Nova Banda</h2>
-                        <form className="flex flex-col gap-4">
+                        
+                        <form action={createBand} className="flex flex-col gap-4">
                             <div className="flex flex-col gap-2">
                                 <label htmlFor="banda" className="text-sm font-medium text-neutral-400 ml-1">
                                     Nome da Banda
@@ -39,10 +49,11 @@ export default function GerenciarBandasPage() {
                                     required
                                 />
                             </div>
-                            <button className="flex items-center justify-center gap-2 w-full bg-white text-neutral-900 rounded-xl p-3 hover:bg-neutral-400 transition-colors duration-300 cursor-pointer">
+                            <button type='submit' className="flex items-center justify-center gap-2 w-full bg-white text-neutral-900 rounded-xl p-3 hover:bg-neutral-400 transition-colors duration-300 cursor-pointer">
                                 <LuPlus size={20}/> Salvar Banda
                             </button>
                         </form>
+
                     </div>
                 </aside>
 
@@ -64,7 +75,7 @@ export default function GerenciarBandasPage() {
 
                             <tbody className="divide-y divide-neutral-800">
                                 {bandsWithMusicCount.map((bnd) => (
-                                    <tr key={bnd.name} className='group hover:bg-neutral-800/40 transition-colors'>
+                                    <tr key={bnd.id} className='group hover:bg-neutral-800/40 transition-colors'>
                                         <td className="p-4 font-medium text-neutral-200">{bnd.name}</td>
                                         <td className="p-4">
                                             <div className="flex items-center justify-center gap-2 text-neutral-400 bg-neutral-800/50 w-fit mx-auto px-3 py-1 rounded-full text-sm border border-neutral-700">

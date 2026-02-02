@@ -38,9 +38,9 @@ export default async function SetlistPage() {
                         <h1 className="text-4xl font-bold tracking-tight text-white">Setlist</h1>
                         <p className="text-neutral-400 mt-1">Todo o seu repertório</p> 
                     </div>
-                    <button className="flex items-center justify-center gap-2 bg-white text-neutral-900 rounded-xl p-3 hover:bg-neutral-400 transition-colors duration-300 cursor-pointer">
+                    <Link href={'./musicas'} className="flex items-center justify-center gap-2 bg-white text-neutral-900 rounded-xl p-3 hover:bg-neutral-400 transition-colors duration-300 cursor-pointer">
                         <LuPlus size={20}/>  Nova Música
-                    </button>
+                    </Link>
                 </div>
             </header>
 
