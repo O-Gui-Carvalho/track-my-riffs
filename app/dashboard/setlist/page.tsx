@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { LuArrowLeft, LuPlus } from "react-icons/lu"
 import { TbEdit, TbTrash } from "react-icons/tb"
-import { musics, bands } from "@/data/database"
+import { sql } from "@/lib/db"
 
 // Mapeamento de cores para os status
 const statusStyles: { [key: string]: string } = {
@@ -10,9 +10,22 @@ const statusStyles: { [key: string]: string } = {
     'Aprendendo': 'bg-blue-500/10 text-blue-500 border-blue-500/20',
 }
 
-const bandsMap = new Map(bands.map(band => [band.id, band.name]))
+//Componente assíncrono
+export default async function SetlistPage() {
+    //JOIN para pegar o nome da banda na tabela 'bands'
+    const musics = await sql`
+        SELECT 
+            musics.id, 
+            musics.title, 
+            musics.status, 
+            bands.name as band_name 
+        FROM musics 
+        JOIN bands ON musics.band_id = bands.id
+        ORDER BY 
+            bands.name ASC,
+            musics.title ASC
+    `
 
-export default function SetlistPage() {
     return (
         <section className='flex flex-col p-8 max-w-6xl mx-auto h-dvh overflow-hidden'>
             
@@ -45,13 +58,16 @@ export default function SetlistPage() {
                         </thead>
                         <tbody className="divide-y divide-neutral-800">
                             {musics.map((msc) => (
-                                <tr key={msc.title} className="group hover:bg-neutral-800 transition-colors duration-300 cursor-pointer">
+                                <tr key={msc.id} className="group hover:bg-neutral-800 transition-colors duration-300 cursor-pointer">
                                     <td className="p-4 font-medium text-neutral-200">{msc.title}</td>
+                                    
+                                    {/* 5. Agora usamos msc.band_name direto (graças ao SQL JOIN) */}
                                     <td className="p-4 text-neutral-400">
-                                        {bandsMap.get(msc.bandId) ?? 'Banda não encontrada'}
+                                        {msc.band_name}
                                     </td>
+                                    
                                     <td className="p-4">
-                                        <span className={`px-2 py-1 rounded-full text-xs border ${statusStyles[msc.status] || statusStyles['Nova']}`}>
+                                        <span className={`px-2 py-1 rounded-full text-xs border ${statusStyles[msc.status] || 'bg-gray-500/10 text-gray-500'}`}>
                                             {msc.status}
                                         </span>
                                     </td>
