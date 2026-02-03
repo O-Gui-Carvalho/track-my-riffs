@@ -1,7 +1,17 @@
-import React from 'react';
-import Sidenav from '@/components/Navbar';
+import React from 'react'
+import Sidenav from '@/components/Navbar'
+import { auth } from '@/lib/auth/server'
+import { redirect } from 'next/navigation';
 
-export default function layout( { children } : { children: React.ReactNode } ) {
+export const dynamic = 'force-dynamic'
+
+export default async function layout( { children } : { children: React.ReactNode } ) {
+  const { data: session } = await auth.getSession();
+
+  if (!session?.user) {
+    redirect ('/')
+  }
+
   return (
     <div className='h-dvh flex flex-col md:flex-row md:overflow-hidden'>
         <div className='w-full flex-none md:w-64'>

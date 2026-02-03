@@ -15,3 +15,9 @@ export interface Music {
     bandId: number;
     status: MusicStatus;
 }
+
+export interface User {
+    id: string;
+    name: string | null;
+    email: string;
+}
