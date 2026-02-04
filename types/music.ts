@@ -7,6 +7,7 @@ export enum MusicStatus {
 export interface Band {
     id: number;
     name: string;
+    userId: string;
 }
 
 export interface Music {
@@ -14,6 +15,7 @@ export interface Music {
     title: string;
     bandId: number;
     status: MusicStatus;
+    userId: string;
 }
 
 export interface User {

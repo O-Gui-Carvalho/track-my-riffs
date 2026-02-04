@@ -2,8 +2,13 @@ import Link from 'next/link'
 import { LuArrowLeft, LuMusic, LuTrash2, LuPlus } from 'react-icons/lu'
 import { createBand } from '@/app/actions/create'
 import { sql } from '@/lib/db'
+import { auth } from "@/lib/auth/server"
+import { redirect } from "next/navigation"
 
 export default async function GerenciarBandasPage() {
+    const { data: session } = await auth.getSession();
+    if (!session?.user) redirect('/');
+
     const bandsWithMusicCount = await sql`
         SELECT 
             bands.id,
@@ -11,6 +16,7 @@ export default async function GerenciarBandasPage() {
             COUNT(musics.id) as "musicCount"
         FROM bands
         LEFT JOIN musics ON bands.id = musics.band_id
+        WHERE bands.user_id = ${session.user.id}
         GROUP BY bands.id, bands.name
         ORDER BY bands.name ASC
     `;

@@ -2,6 +2,8 @@ import Link from "next/link"
 import { LuArrowLeft, LuPlus } from "react-icons/lu"
 import { TbEdit, TbTrash } from "react-icons/tb"
 import { sql } from "@/lib/db"
+import { auth } from "@/lib/auth/server"
+import { redirect } from "next/navigation"
 
 // Mapeamento de cores para os status
 const statusStyles: { [key: string]: string } = {
@@ -12,6 +14,9 @@ const statusStyles: { [key: string]: string } = {
 
 //Componente assíncrono
 export default async function SetlistPage() {
+    const { data: session } = await auth.getSession();
+    if (!session?.user) redirect('/');
+
     //JOIN para pegar o nome da banda na tabela 'bands'
     const musics = await sql`
         SELECT 
@@ -21,6 +26,7 @@ export default async function SetlistPage() {
             bands.name as band_name 
         FROM musics 
         JOIN bands ON musics.band_id = bands.id
+        WHERE musics.user_id = ${session.user.id}
         ORDER BY 
             bands.name ASC,
             musics.title ASC
