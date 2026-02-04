@@ -1,10 +1,10 @@
 "use client";
 
+import { signOut } from '@/app/actions/auth';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { LuFileMusic, LuHouse, LuList, LuListMusic } from "react-icons/lu";
-import { GoGear } from "react-icons/go";
+import { LuFileMusic, LuHouse, LuList, LuListMusic, LuLogOut } from "react-icons/lu";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -69,10 +69,11 @@ export default function Navbar() {
         </div>
         
         <button 
+          onClick={signOut}
           title="Configurações"
           className="p-2 text-neutral-400 hover:text-white hover:bg-neutral-800 rounded-lg transition-colors cursor-pointer"
         >
-          <GoGear className='text-xl'/>
+          <LuLogOut className='text-xl'/>
         </button>
       </div>
 

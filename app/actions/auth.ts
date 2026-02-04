@@ -3,24 +3,33 @@
 import { auth } from "@/lib/auth/server";
 import { redirect } from "next/navigation";
 
-export async function login(formData: FormData) {
-  // 1. Extrair dados
+type FormState = {
+  message: string;
+} | null;
+
+export async function login(prevState: FormState, formData: FormData): Promise<FormState> {
+  // Extrair dados
   const email = formData.get('email') as string;
   const password = formData.get('password') as string;
 
-  // 2. Tentar logar usando Neon Auth (Credenciais)
-  const result = await auth.signIn.email({
-    email,
-    password,
-  });
+  try {
+    // Tentar logar usando Neon Auth (Credenciais)
+    const result = await auth.signIn.email({
+      email,
+      password,
+    });
 
-  // 3. Verificar sucesso/erro
-  if (result.error) {
-    console.error("Erro no login:", result.error);
-    return; 
+    // Verificar sucesso/erro
+    if (result.error) {
+       // Retorna o erro para o frontend ler
+       return { message: 'Email ou senha incorretos.' };
+    }
+  } catch (err) {
+      // Captura erros inesperados de conexão
+      return { message: 'Erro ao conectar com o servidor.' };
   }
 
-  // 4. Redirecionar após sucesso
+  // Redirecionar após sucesso
   redirect('/dashboard');
 }
 
@@ -41,4 +50,9 @@ export async function signup(formData: FormData) {
     }
 
     redirect('/dashboard')
+}
+
+export async function signOut() {
+  await auth.signOut();
+  redirect('/');
 }

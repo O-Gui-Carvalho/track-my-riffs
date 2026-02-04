@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { LuArrowLeft, LuPlus } from "react-icons/lu"
 import { sql } from '@/lib/db'
-import { createMusic } from '@/actions/create'
+import { createMusic } from '@/app/actions/create'
 
 export default async function AddMusicPage() {
     const fieldStyles = "w-full bg-neutral-800 border border-neutral-700 rounded-lg p-3 text-neutral-200 placeholder:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-neutral-600 focus:border-transparent transition-all"

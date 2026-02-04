@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { LuArrowLeft, LuMusic, LuTrash2, LuPlus } from 'react-icons/lu'
-import { createBand } from '@/actions/create'
+import { createBand } from '@/app/actions/create'
 import { sql } from '@/lib/db'
 
 export default async function GerenciarBandasPage() {

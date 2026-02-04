@@ -18,7 +18,6 @@ export async function createMusic(formData: FormData) {
         INSERT INTO musics (title, band_id, status)
         VALUES (${title}, ${parseInt(bandId)}, ${status})
     `
-
     //Limpar o chache
     revalidatePath('/dashboard/setlist')
 

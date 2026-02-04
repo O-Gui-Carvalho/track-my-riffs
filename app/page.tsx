@@ -1,11 +1,8 @@
 import Image from "next/image";
-import { login } from "@/app/actions/auth";
 import Link from "next/link";
+import { LoginForm } from "@/components/LoginForm"
 
 export default function Home() {
-  // Estilo reutilizável para os inputs
-  const inputStyles = "bg-[#1A1A1A] border border-[#404040] rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-neutral-500 transition-all";
-
   return (
     <section className="flex min-h-dvh">
       {/* Lado Esquerdo - Imagem */}
@@ -31,37 +28,9 @@ export default function Home() {
             <p className="text-neutral-400">Faça login para continuar praticando!</p>
           </header>
 
-          <form action={login} className="flex flex-col gap-4">
-            <div className="flex flex-col gap-1">
-              <label htmlFor="email" className="text-sm font-medium">Email</label>
-              <input 
-                id="email"
-                name="email"
-                type="email" 
-                placeholder="email@exemplo.com" 
-                className={inputStyles}
-                required
-              />
-            </div>
+          <LoginForm/>
 
-            <div className="flex flex-col gap-1">
-              <label htmlFor="password" title="Senha" className="text-sm font-medium">Senha</label>
-              <input 
-                id="password"
-                name="password"
-                type="password" 
-                placeholder="••••••••" 
-                className={inputStyles}
-                required
-              />
-            </div>
-
-            <button type="submit" className="mt-2 bg-neutral-200 text-neutral-900 font-semibold rounded-lg p-2 hover:bg-neutral-400 transition-colors duration-300 cursor-pointer">
-              Entrar
-            </button>
-          </form>
-
-          <div className="text-center text-sm text-neutral-500 mt-4">
+          <div className="text-center text-sm text-neutral-500">
             Não tem conta?{' '}
             <Link href="/signup" className="text-white hover:underline underline-offset-4">
               Cadastre-se
