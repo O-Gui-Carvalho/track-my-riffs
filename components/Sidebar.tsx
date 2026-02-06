@@ -47,7 +47,7 @@ export default function Sidebar({ user }: SidebarProps) {
         className={`
           fixed md:relative z-50 
           inset-y-0 left-0 
-          h-screen w-64 
+          h-dvh w-64 
           bg-neutral-900 border-r border-neutral-800 
           flex flex-col justify-between p-6
           transform transition-transform duration-300 ease-in-out
