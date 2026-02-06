@@ -1,8 +1,18 @@
 import Image from "next/image";
 import Link from "next/link";
 import { LoginForm } from "@/components/LoginForm"
+import { auth } from '@/lib/auth/server'
+import { redirect } from 'next/navigation'
 
-export default function Home() {
+export const dynamic = 'force-dynamic'
+
+export default async function Home() {
+  const { data: session } = await auth.getSession()
+
+  if (session?.user) {
+    redirect ('/dashboard')
+  }
+
   return (
     <section className="flex min-h-dvh">
       {/* Lado Esquerdo - Imagem */}
