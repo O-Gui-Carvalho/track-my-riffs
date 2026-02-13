@@ -4,6 +4,7 @@ import { TbEdit, TbTrash } from "react-icons/tb"
 import { sql } from "@/lib/db"
 import { auth } from "@/lib/auth/server"
 import { redirect } from "next/navigation"
+import MusicActions from "@/components/MusicActions"
 
 // Mapeamento de cores para os status
 const statusStyles: { [key: string]: string } = {
@@ -78,14 +79,7 @@ export default async function SetlistPage() {
                                         </span>
                                     </td>
                                     <td className="p-4">
-                                        <div className="flex justify-end gap-2">
-                                            <button title="Editar" className='p-2 hover:bg-neutral-700 rounded-lg text-neutral-400 hover:text-green-500 transition-colors duration-300 cursor-pointer'>
-                                                <TbEdit size={20}/>
-                                            </button>
-                                            <button title="Excluir" className='p-2 hover:bg-neutral-700 rounded-lg text-neutral-400 hover:text-red-500 transition-colors duration-300 cursor-pointer'>
-                                                <TbTrash size={20} />
-                                            </button>
-                                        </div>
+                                        <MusicActions musicId={msc.id} currentStatus={msc.status} />
                                     </td>
                                 </tr>
                             ))}
